@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="595" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c4048736-a412-4253-848b-a0a4cfe5c710">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="35"/>
+	<parameter name="folio" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT folio, fk_idPaciente, edad_paciente,  recetario, 
+(SELECT nombre FROM MARIA.PACIENTE WHERE PACIENTE.pk_idPaciente = EXPEDIENTE_DIAGNOSTICO.fk_idPaciente),
+(SELECT apepaterno FROM MARIA.PACIENTE WHERE PACIENTE.pk_idPaciente = EXPEDIENTE_DIAGNOSTICO.fk_idPaciente),
+(SELECT apematerno FROM MARIA.PACIENTE WHERE PACIENTE.pk_idPaciente = EXPEDIENTE_DIAGNOSTICO.fk_idPaciente),  
+(SELECT sexo FROM MARIA.PACIENTE WHERE PACIENTE.pk_idPaciente = EXPEDIENTE_DIAGNOSTICO.fk_idPaciente),   
+(SELECT fechanacimiento FROM MARIA.PACIENTE WHERE PACIENTE.pk_idPaciente = EXPEDIENTE_DIAGNOSTICO.fk_idPaciente),
+(SELECT nombre_esp FROM MARIA.ESPECIALISTA WHERE ESPECIALISTA.pk_idEspecialista = EXPEDIENTE_DIAGNOSTICO.fk_idespecialista),
+(SELECT apepaterno_esp FROM MARIA.ESPECIALISTA WHERE ESPECIALISTA.pk_idEspecialista = EXPEDIENTE_DIAGNOSTICO.fk_idespecialista),
+(SELECT apematerno_esp FROM MARIA.ESPECIALISTA WHERE ESPECIALISTA.pk_idEspecialista = EXPEDIENTE_DIAGNOSTICO.fk_idespecialista),
+(SELECT rfc_esp FROM MARIA.ESPECIALISTA WHERE ESPECIALISTA.pk_idEspecialista = EXPEDIENTE_DIAGNOSTICO.fk_idespecialista),
+(SELECT num_cedula FROM MARIA.ESPECIALISTA WHERE ESPECIALISTA.pk_idEspecialista = EXPEDIENTE_DIAGNOSTICO.fk_idespecialista)    
+FROM MARIA.EXPEDIENTE_DIAGNOSTICO WHERE folio = $P{folio};]]>
+	</queryString>
+	<field name="folio" class="java.lang.String"/>
+	<field name="fk_idpaciente" class="java.lang.String"/>
+	<field name="edad_paciente" class="java.lang.Integer"/>
+	<field name="recetario" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="apepaterno" class="java.lang.String"/>
+	<field name="apematerno" class="java.lang.String"/>
+	<field name="sexo" class="java.lang.String"/>
+	<field name="fechanacimiento" class="java.sql.Date"/>
+	<field name="nombre_esp" class="java.lang.String"/>
+	<field name="apepaterno_esp" class="java.lang.String"/>
+	<field name="apematerno_esp" class="java.lang.String"/>
+	<field name="rfc_esp" class="java.lang.String"/>
+	<field name="num_cedula" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="28" y="10" width="56" height="57" uuid="1f76ef0f-7ab1-4c69-9d70-9e2075fc360d"/>
+				<imageExpression><![CDATA["C:\\Users\\danie\\Downloads\\CLINICA_MARIA_IMG\\clinica_reporte.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="152" y="10" width="265" height="33" forecolor="#006699" uuid="e0219fdb-14a6-49bd-a050-f6911ece5879"/>
+				<textElement>
+					<font fontName="Arial" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Clinica María - Recetario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="114" y="43" width="366" height="24" forecolor="#006699" uuid="03dcf5a2-d5e5-448b-be67-0c31442cdf46"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Calle las Flores 118, Colonia Villalta, CP 96227, Acayucan Ver.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="231" y="63" width="105" height="16" forecolor="#006699" uuid="4e628189-9ae8-4753-9bf6-143a15be7049"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tel: 921 100 22 11]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="20" splitType="Stretch">
+			<line>
+				<reportElement x="15" y="0" width="530" height="3" forecolor="#006699" uuid="d460f8fe-3f29-414d-aab7-fbf65453bcb6"/>
+			</line>
+			<staticText>
+				<reportElement x="15" y="3" width="193" height="14" forecolor="#006699" uuid="d73aef46-a17f-46ea-bc51-84b7e74ae24b"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS GENERALES DE PACIENTE]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="108" splitType="Stretch">
+			<staticText>
+				<reportElement x="14" y="10" width="70" height="12" forecolor="#006699" uuid="2ea10c9c-cd6d-4ff0-8d86-e5240cd8be18"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FOLIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="95" y="10" width="80" height="12" forecolor="#006699" uuid="5873f49f-cdbd-442b-8211-4d5795369982"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID PACIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="195" y="11" width="50" height="12" forecolor="#006699" uuid="df202097-bcf9-45b7-b2be-7dd83b0eea5e"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SEXO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="317" y="10" width="136" height="12" forecolor="#006699" uuid="d28530eb-aa14-476a-b5fa-5792f0baaf8b"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE PACIENTE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="15" y="105" width="530" height="3" forecolor="#006699" uuid="cdf336ff-af98-40dd-a8ce-8e509c754432"/>
+			</line>
+			<textField>
+				<reportElement x="95" y="23" width="100" height="20" uuid="16348227-76a6-4f51-af68-b3ccb7c04f3a"/>
+				<textFieldExpression><![CDATA[$F{fk_idpaciente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="195" y="23" width="100" height="20" uuid="942c6080-c6cd-4724-b234-0b7f7862c1f9"/>
+				<textFieldExpression><![CDATA[$F{sexo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="14" y="22" width="70" height="20" uuid="95224e2f-9530-42a9-a426-a6a87532ee7d"/>
+				<textFieldExpression><![CDATA[$F{folio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="317" y="22" width="75" height="20" uuid="affed196-8569-45bc-b9ad-c13e31f3b6f8"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="394" y="22" width="78" height="20" uuid="8fbae394-6b47-4e66-baa2-4e0d145931cd"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apepaterno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="472" y="23" width="73" height="20" uuid="8f49144f-08a1-40cf-915e-8e66cc41d247"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apematerno}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="54" width="231" height="14" forecolor="#006699" uuid="11e552f7-03df-46f2-a6fe-9d6eac18caa3"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS GENERALES DE ESPECIALISTA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="15" y="85" width="80" height="20" uuid="d7697659-e180-4108-a8fe-c1213439249b"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_esp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="95" y="84" width="91" height="20" uuid="a8172d7d-360c-4d16-849e-f03450d70050"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apepaterno_esp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="186" y="85" width="95" height="20" uuid="f1180f69-ab51-4cef-90f0-257de0f19f93"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apematerno_esp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="326" y="85" width="100" height="20" uuid="7a45265c-7eea-43de-9f6a-ad373b5b3a26"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{rfc_esp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="453" y="88" width="90" height="20" uuid="a0cbcab5-a708-40c2-a801-a8fce2e20bf1"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{num_cedula}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="73" width="137" height="12" forecolor="#006699" uuid="faf52055-2009-4f43-a530-39b1f06eac73"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE DE ESPECIALISTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="326" y="73" width="41" height="12" forecolor="#006699" uuid="425837a2-4db0-437b-86a5-2507a83387c1"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RFC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="453" y="73" width="90" height="12" forecolor="#006699" uuid="06d6e9de-6a0e-49c9-8be7-77fc2ffcee8d"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NÚMERO CEDULA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="243" splitType="Stretch">
+			<textField>
+				<reportElement x="19" y="43" width="398" height="106" uuid="be9ff91d-95d0-4bb1-a029-6e2e4482fc01"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{recetario}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="15" y="11" width="193" height="20" forecolor="#006699" uuid="5182b33b-6645-455d-855f-f0ded78e003e"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MEDICAMENTOS PREESCRITOS]]></text>
+			</staticText>
+			<line>
+				<reportElement x="367" y="212" width="149" height="1" forecolor="#006699" uuid="87eb3d02-23bc-4ea1-aa8e-f3df81f73e05"/>
+			</line>
+			<staticText>
+				<reportElement x="394" y="223" width="120" height="20" forecolor="#006699" uuid="9737e9ee-9848-48da-844a-6b4b942b5af7"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FIRMA ESPECIALISTA]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="29" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="21" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="26" splitType="Stretch"/>
+	</summary>
+</jasperReport>

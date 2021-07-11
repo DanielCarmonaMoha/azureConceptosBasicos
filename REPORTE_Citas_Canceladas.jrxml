@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.16.0.final using JasperReports Library version 6.16.0-48579d909b7943b64690c65c71e07e0b80981928  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2ff5c003-6a50-47ff-bcd7-deb0bcd4d632">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Clinica_Maria"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="fecha1" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="fecha2" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT * FROM MARIA.AGENDAR_CITA
+INNER JOIN MARIA.CITA
+ON AGENDAR_CITA.fk_idCita = CITA.pk_idCita
+INNER JOIN MARIA.PACIENTE
+ON CITA.fk_idPaciente = PACIENTE.pk_idPaciente
+WHERE status = 'CANCELADA' AND (CAST (fechacita AS CHAR(10)) BETWEEN  $P{fecha1}  AND $P{fecha2}  )
+ORDER BY fechacita, horacita;;]]>
+	</queryString>
+	<field name="fk_idcita" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fk_idcita"/>
+		<property name="com.jaspersoft.studio.field.label" value="fk_idcita"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="agendar_cita"/>
+	</field>
+	<field name="fk_idespecialista" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fk_idespecialista"/>
+		<property name="com.jaspersoft.studio.field.label" value="fk_idespecialista"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="agendar_cita"/>
+	</field>
+	<field name="consultorio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="consultorio"/>
+		<property name="com.jaspersoft.studio.field.label" value="consultorio"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="agendar_cita"/>
+	</field>
+	<field name="fechacita" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fechacita"/>
+		<property name="com.jaspersoft.studio.field.label" value="fechacita"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="agendar_cita"/>
+	</field>
+	<field name="horacita" class="java.sql.Time">
+		<property name="com.jaspersoft.studio.field.name" value="horacita"/>
+		<property name="com.jaspersoft.studio.field.label" value="horacita"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="agendar_cita"/>
+	</field>
+	<field name="turno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="turno"/>
+		<property name="com.jaspersoft.studio.field.label" value="turno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="agendar_cita"/>
+	</field>
+	<field name="status" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="status"/>
+		<property name="com.jaspersoft.studio.field.label" value="status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="agendar_cita"/>
+	</field>
+	<field name="observaciones" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="observaciones"/>
+		<property name="com.jaspersoft.studio.field.label" value="observaciones"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="agendar_cita"/>
+	</field>
+	<field name="pk_idcita" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="pk_idcita"/>
+		<property name="com.jaspersoft.studio.field.label" value="pk_idcita"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cita"/>
+	</field>
+	<field name="fk_idpaciente" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fk_idpaciente"/>
+		<property name="com.jaspersoft.studio.field.label" value="fk_idpaciente"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cita"/>
+	</field>
+	<field name="fecha" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fecha"/>
+		<property name="com.jaspersoft.studio.field.label" value="fecha"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cita"/>
+	</field>
+	<field name="hora" class="java.sql.Time">
+		<property name="com.jaspersoft.studio.field.name" value="hora"/>
+		<property name="com.jaspersoft.studio.field.label" value="hora"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cita"/>
+	</field>
+	<field name="pk_idpaciente" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="pk_idpaciente"/>
+		<property name="com.jaspersoft.studio.field.label" value="pk_idpaciente"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="apepaterno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="apepaterno"/>
+		<property name="com.jaspersoft.studio.field.label" value="apepaterno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="apematerno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="apematerno"/>
+		<property name="com.jaspersoft.studio.field.label" value="apematerno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="sexo" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="sexo"/>
+		<property name="com.jaspersoft.studio.field.label" value="sexo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="fechanacimiento" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fechanacimiento"/>
+		<property name="com.jaspersoft.studio.field.label" value="fechanacimiento"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="calle" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="calle"/>
+		<property name="com.jaspersoft.studio.field.label" value="calle"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="numin" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="numin"/>
+		<property name="com.jaspersoft.studio.field.label" value="numin"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="numext" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="numext"/>
+		<property name="com.jaspersoft.studio.field.label" value="numext"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="colonia" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="colonia"/>
+		<property name="com.jaspersoft.studio.field.label" value="colonia"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<field name="ciudad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="ciudad"/>
+		<property name="com.jaspersoft.studio.field.label" value="ciudad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="paciente"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="88" splitType="Stretch">
+			<image>
+				<reportElement x="22" y="0" width="64" height="64" uuid="f39a2118-b581-4cf9-98e5-3cb056e96cfa"/>
+				<imageExpression><![CDATA["C:\\Users\\danie\\Downloads\\CLINICA_MARIA_IMG\\clinica_reporte.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="189" y="0" width="177" height="33" forecolor="#006699" uuid="f178b588-b735-4704-890b-e7be607bdbd5"/>
+				<textElement>
+					<font fontName="Arial" size="28" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Clinica Maria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="162" y="33" width="229" height="21" forecolor="#006699" uuid="8df644ca-0db7-4bf8-8904-cc73f77375b7"/>
+				<textElement>
+					<font fontName="Arial" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relación de Citas Canceladas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="121" y="64" width="160" height="19" forecolor="#006699" uuid="fb6e0fce-d23f-4e8d-aef2-0ee5c997fdb4"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Comprendida entre:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="286" y="64" width="50" height="19" uuid="76d5f9ee-90a4-499d-b6b9-2c3843c10f0b"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="346" y="64" width="19" height="19" forecolor="#006699" uuid="cf212fc3-20a6-42c1-98e7-c532a9da69ad"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="365" y="64" width="51" height="20" uuid="b99c10d6-6375-4c07-a116-45b7df2eda74"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="8" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement x="14" y="0" width="86" height="20" forecolor="#006699" uuid="c83af670-1212-400d-af7c-8c82fc4c6d8d"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID CITA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="0" width="100" height="20" forecolor="#006699" uuid="50b5efa6-d4a4-4758-8a1d-7460ca5465a7"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID PACIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="0" width="100" height="20" forecolor="#006699" uuid="5fca5ccc-1703-478c-bdfa-59d5132aa061"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE PACIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="337" y="0" width="100" height="20" forecolor="#006699" uuid="80b4153f-e390-403d-9573-4436a88bf0be"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONSULTORIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="0" width="100" height="20" forecolor="#006699" uuid="0bed01e0-78e7-4094-ad52-c2df8a7c05db"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA CITA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="67" splitType="Stretch">
+			<textField>
+				<reportElement x="14" y="0" width="86" height="20" uuid="98dbca19-111c-4cf0-a92f-ff5c43e28673"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fk_idcita}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="0" width="100" height="20" uuid="b0769051-3b4f-4590-aafc-fdfadb583558"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pk_idpaciente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="0" width="100" height="20" uuid="830454bf-9cc0-43d1-a322-718224ec439a"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="20" width="100" height="20" uuid="d0e5f3d0-0785-4a65-9d8d-70c0622779af"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apepaterno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="40" width="100" height="20" uuid="f3d5095f-0c66-41a4-9a73-4b6dd1ccf85d"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apematerno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="337" y="0" width="100" height="20" uuid="71783885-d866-4a00-9590-b2933011456c"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{consultorio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy/MM/dd">
+				<reportElement x="455" y="0" width="100" height="20" uuid="25be587d-0b13-440a-aeca-f951615b50ae"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechacita}]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm a">
+				<reportElement x="455" y="20" width="100" height="20" uuid="a1b1aebe-ea7b-4a47-8810-39e47bc6f0ca"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{horacita}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="21" y="59" width="520" height="1" forecolor="#006699" uuid="7372323e-41e5-43cf-81d5-8323a7263dd2"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="39" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

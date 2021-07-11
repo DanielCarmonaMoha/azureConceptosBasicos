@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="REPORTE_Cita_Asignada_Especilaista" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e797c86e-455b-47d8-b40c-179b5e0ff37e">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter "/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idEspecialista" class="java.lang.String"/>
+	<parameter name="fecha1" class="java.lang.String"/>
+	<parameter name="fecha2" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT * FROM MARIA.PACIENTE
+INNER JOIN MARIA.CITA
+ON PACIENTE.pk_idPaciente = CITA.fk_idPaciente
+INNER JOIN MARIA.AGENDAR_CITA
+ON CITA.pk_idCita = AGENDAR_CITA.fk_idCita
+INNER JOIN MARIA.ESPECIALISTA
+ON AGENDAR_CITA.fk_idespecialista = ESPECIALISTA.pk_idespecialista
+WHERE (fk_idespecialista = $P{idEspecialista}) AND (status = 'EN ESPERA') 
+AND (CAST (fechacita AS CHAR(10)) BETWEEN $P{fecha1} AND $P{fecha2})
+ORDER BY fechaCita, horaCita;]]>
+	</queryString>
+	<field name="pk_idpaciente" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="apepaterno" class="java.lang.String"/>
+	<field name="apematerno" class="java.lang.String"/>
+	<field name="sexo" class="java.lang.String"/>
+	<field name="fechanacimiento" class="java.sql.Date"/>
+	<field name="calle" class="java.lang.String"/>
+	<field name="numin" class="java.lang.Integer"/>
+	<field name="numext" class="java.lang.Integer"/>
+	<field name="colonia" class="java.lang.String"/>
+	<field name="ciudad" class="java.lang.String"/>
+	<field name="pk_idcita" class="java.lang.String"/>
+	<field name="fk_idpaciente" class="java.lang.String"/>
+	<field name="fecha" class="java.sql.Date"/>
+	<field name="hora" class="java.sql.Time"/>
+	<field name="fk_idcita" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fk_idcita"/>
+		<property name="com.jaspersoft.studio.field.label" value="fk_idcita"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="agendar_cita"/>
+	</field>
+	<field name="fk_idespecialista" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="fk_idespecialista"/>
+		<property name="com.jaspersoft.studio.field.label" value="fk_idespecialista"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="agendar_cita"/>
+	</field>
+	<field name="consultorio" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="consultorio"/>
+		<property name="com.jaspersoft.studio.field.label" value="consultorio"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="agendar_cita"/>
+	</field>
+	<field name="fechacita" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fechacita"/>
+		<property name="com.jaspersoft.studio.field.label" value="fechacita"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="agendar_cita"/>
+	</field>
+	<field name="horacita" class="java.sql.Time">
+		<property name="com.jaspersoft.studio.field.name" value="horacita"/>
+		<property name="com.jaspersoft.studio.field.label" value="horacita"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="agendar_cita"/>
+	</field>
+	<field name="turno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="turno"/>
+		<property name="com.jaspersoft.studio.field.label" value="turno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="agendar_cita"/>
+	</field>
+	<field name="status" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="status"/>
+		<property name="com.jaspersoft.studio.field.label" value="status"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="agendar_cita"/>
+	</field>
+	<field name="observaciones" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="observaciones"/>
+		<property name="com.jaspersoft.studio.field.label" value="observaciones"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="agendar_cita"/>
+	</field>
+	<field name="pk_idespecialista" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="pk_idespecialista"/>
+		<property name="com.jaspersoft.studio.field.label" value="pk_idespecialista"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="especialista"/>
+	</field>
+	<field name="nombre_esp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre_esp"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre_esp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="especialista"/>
+	</field>
+	<field name="apepaterno_esp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="apepaterno_esp"/>
+		<property name="com.jaspersoft.studio.field.label" value="apepaterno_esp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="especialista"/>
+	</field>
+	<field name="apematerno_esp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="apematerno_esp"/>
+		<property name="com.jaspersoft.studio.field.label" value="apematerno_esp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="especialista"/>
+	</field>
+	<field name="sexo_esp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="sexo_esp"/>
+		<property name="com.jaspersoft.studio.field.label" value="sexo_esp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="especialista"/>
+	</field>
+	<field name="fechanacimiento_esp" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="fechanacimiento_esp"/>
+		<property name="com.jaspersoft.studio.field.label" value="fechanacimiento_esp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="especialista"/>
+	</field>
+	<field name="especialidad" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="especialidad"/>
+		<property name="com.jaspersoft.studio.field.label" value="especialidad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="especialista"/>
+	</field>
+	<field name="num_cedula" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="num_cedula"/>
+		<property name="com.jaspersoft.studio.field.label" value="num_cedula"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="especialista"/>
+	</field>
+	<field name="rfc_esp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="rfc_esp"/>
+		<property name="com.jaspersoft.studio.field.label" value="rfc_esp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="especialista"/>
+	</field>
+	<field name="curp_esp" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="curp_esp"/>
+		<property name="com.jaspersoft.studio.field.label" value="curp_esp"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="especialista"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="93" splitType="Stretch">
+			<image>
+				<reportElement x="26" y="0" width="64" height="64" uuid="3b391c49-6e3c-4613-aa02-010ad5d481d8"/>
+				<imageExpression><![CDATA["C:\\Users\\danie\\Downloads\\CLINICA_MARIA_IMG\\clinica_reporte.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="196" y="0" width="184" height="42" forecolor="#006699" uuid="06e34da6-7eca-4a03-bc60-3cf8b636aa5a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a4941c48-8195-4781-bcf0-5fa3f16b05a2"/>
+				</reportElement>
+				<textElement>
+					<font size="28" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Clinica Maria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="116" y="34" width="333" height="30" forecolor="#006699" uuid="0edd0d97-c4f8-4d01-b2de-94ea3f706714">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a4941c48-8195-4781-bcf0-5fa3f16b05a2"/>
+				</reportElement>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relación de Citas Asignadas a Especialista]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="147" y="64" width="159" height="18" forecolor="#006699" uuid="84f0cd98-79e6-4920-b689-35cabe42a2ef">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a4941c48-8195-4781-bcf0-5fa3f16b05a2"/>
+				</reportElement>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha Comprendida entre:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="4" y="92" width="545" height="1" forecolor="#2F76BD" uuid="3837d1ae-a48c-44c5-be34-fe09fa407742">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+			<textField>
+				<reportElement x="306" y="64" width="53" height="20" uuid="c8864e34-aa0c-4a4a-8160-245c32606ffb"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="359" y="64" width="8" height="18" forecolor="#006699" uuid="825482d5-4851-4f50-80e5-d06780ae3fa7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a4941c48-8195-4781-bcf0-5fa3f16b05a2"/>
+				</reportElement>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="367" y="64" width="49" height="20" uuid="0ede1139-4009-4283-af65-d1fd22fd2e31"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{fecha2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="56" splitType="Stretch">
+			<staticText>
+				<reportElement x="4" y="3" width="90" height="16" forecolor="#006699" uuid="61dd9293-783b-40b5-b067-66a8b444dff1">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a4941c48-8195-4781-bcf0-5fa3f16b05a2"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID ESPECIALISTA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="4" y="21" width="90" height="16" uuid="079d7841-7616-4aca-a324-55d3826a6eb5">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a4941c48-8195-4781-bcf0-5fa3f16b05a2"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fk_idespecialista}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="21" width="80" height="16" uuid="b69480fe-ef35-4ba4-bb75-97ec25eb529e"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_esp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="21" width="100" height="16" uuid="5105adf7-dd4e-4d0c-8793-daf446b7d7f2"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apepaterno_esp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="280" y="19" width="100" height="16" uuid="cb35f383-07f1-4db6-ab25-247b52a6b639"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apematerno_esp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="100" y="3" width="130" height="16" forecolor="#006699" uuid="be695038-53e0-4c80-b186-bdad4d800f16">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a4941c48-8195-4781-bcf0-5fa3f16b05a2"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE ESPECIALISTA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="410" y="19" width="100" height="16" uuid="efdad1c6-f9e3-4614-b9b2-fca54285adf3"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{especialidad}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="410" y="3" width="130" height="16" forecolor="#006699" uuid="f8fbc414-c700-445a-9eaf-85734eefe67a">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a4941c48-8195-4781-bcf0-5fa3f16b05a2"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ESPECIALIDAD]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="45" width="545" height="1" forecolor="#2F76BD" uuid="7f59a895-a3b8-4d9b-a3dd-1c6179908466">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="25" splitType="Stretch">
+			<staticText>
+				<reportElement x="4" y="0" width="60" height="20" forecolor="#006699" uuid="c44ac46f-589e-4b6f-9205-3174d050bc4d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="952b7a8b-ca62-4429-a093-1024d23e40b2"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID CITA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="269" y="0" width="100" height="20" forecolor="#006699" uuid="ad757ee4-5a0d-420d-b19f-648b49873097">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e6f36742-6c3f-4fda-925a-c21c35ba81f0"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONSULTORIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="369" y="0" width="63" height="20" forecolor="#006699" uuid="304136ad-4b8f-43b0-b8ab-e1d102dfa7c3">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="82c3c437-c41a-456a-a25f-54960dd2b35a"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="432" y="0" width="52" height="20" forecolor="#006699" uuid="8ad6f88c-fa51-4ca5-9034-0660649d835e">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="43f0af39-716b-47b9-a68c-8d4378ebbfd1"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[HORA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="490" y="0" width="50" height="20" forecolor="#006699" uuid="089ee954-d352-4625-9b5b-3533d304fa11">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4810ddbc-35b7-464f-bf99-76b8e3e9fd82"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TURNO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="64" y="0" width="89" height="20" forecolor="#006699" uuid="b9b8e41b-4a46-4335-b0c1-7fe07c33d531">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="952b7a8b-ca62-4429-a093-1024d23e40b2"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID ESPECIALISTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="159" y="0" width="100" height="20" forecolor="#006699" uuid="7ab7c42d-ac1f-4c85-b919-35ad5e6a8f3c">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="952b7a8b-ca62-4429-a093-1024d23e40b2"/>
+				</reportElement>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE PACIENTE]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="68" splitType="Stretch">
+			<textField>
+				<reportElement x="4" y="0" width="60" height="20" uuid="b43a6c59-6406-418b-89b5-6e64d6ea3cad">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="952b7a8b-ca62-4429-a093-1024d23e40b2"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fk_idcita}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="269" y="0" width="100" height="20" uuid="7c6cd2ef-6b34-4051-9732-561bc37aec59">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="e6f36742-6c3f-4fda-925a-c21c35ba81f0"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{consultorio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="369" y="0" width="63" height="20" uuid="d3ea7d05-6fb8-4520-86d6-bc7f4593ed4b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="82c3c437-c41a-456a-a25f-54960dd2b35a"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechacita}]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm a">
+				<reportElement x="432" y="0" width="52" height="20" uuid="2e0de960-f414-41f3-a207-c28ae12bac14">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="43f0af39-716b-47b9-a68c-8d4378ebbfd1"/>
+				</reportElement>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{horacita}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="490" y="0" width="59" height="20" uuid="0da85a1f-2b9d-46bb-b191-bf277520c11d">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4810ddbc-35b7-464f-bf99-76b8e3e9fd82"/>
+				</reportElement>
+				<textFieldExpression><![CDATA[$F{turno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="64" y="0" width="71" height="20" uuid="a385a225-3595-4d77-8c73-51d7521a9ab6"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pk_idpaciente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="159" y="0" width="100" height="20" uuid="6c3114f0-4af7-4053-a6a0-efe9bb164f5f"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="159" y="20" width="100" height="20" uuid="89745ae5-bf35-4c8a-a5c5-da281134bd93"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apepaterno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="159" y="40" width="100" height="20" uuid="5ae023e6-be98-425b-8fcd-1cd9e86c1ddf"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apematerno}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="4" y="59" width="545" height="1" forecolor="#2F76BD" uuid="ff56359d-6f4f-45e3-88af-4c86ec1ef9ed">
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

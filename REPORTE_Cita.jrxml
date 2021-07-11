@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="595" orientation="Landscape" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="405c1fbd-dc9f-4b8b-971a-c2dd46c7d02b">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idCita" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idPaciente" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="idEspecialista" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT pk_idCita, fk_idPaciente, (SELECT nombre FROM MARIA.PACIENTE WHERE pk_idPaciente=fk_idPaciente ), 
+(SELECT apematerno FROM MARIA.PACIENTE WHERE pk_idPaciente=fk_idPaciente ),
+(SELECT apepaterno FROM MARIA.PACIENTE WHERE pk_idPaciente=fk_idPaciente ),
+(SELECT fechanacimiento FROM MARIA.PACIENTE WHERE pk_idPaciente= $P{idPaciente}),
+(SELECT sexo FROM MARIA.PACIENTE WHERE pk_idPaciente = $P{idPaciente}),
+(SELECT consultorio FROM MARIA.AGENDAR_CITA WHERE fk_idCita= pk_idCita),
+(SELECT fechacita FROM MARIA.AGENDAR_CITA WHERE fk_idCita= pk_idCita),
+(SELECT horacita FROM MARIA.AGENDAR_CITA WHERE fk_idCita= pk_idCita),
+(SELECT turno FROM MARIA.AGENDAR_CITA WHERE fk_idCita= pk_idCita),
+(SELECT status FROM MARIA.AGENDAR_CITA WHERE fk_idCita= pk_idCita),
+(SELECT observaciones FROM MARIA.AGENDAR_CITA WHERE fk_idCita= pk_idCita),
+(SELECT nombre_esp FROM MARIA.ESPECIALISTA WHERE pk_idEspecialista =$P{idEspecialista} ),
+(SELECT apepaterno_esp FROM MARIA.ESPECIALISTA WHERE pk_idEspecialista = $P{idEspecialista}),
+(SELECT apematerno_esp FROM MARIA.ESPECIALISTA WHERE pk_idEspecialista = $P{idEspecialista}),
+(SELECT rfc_esp FROM MARIA.ESPECIALISTA WHERE pk_idEspecialista = $P{idEspecialista}),
+(SELECT num_cedula FROM MARIA.ESPECIALISTA WHERE pk_idEspecialista = $P{idEspecialista})
+FROM MARIA.CITA WHERE pk_idCita=$P{idCita} AND fk_idPaciente=$P{idPaciente};]]>
+	</queryString>
+	<field name="pk_idcita" class="java.lang.String"/>
+	<field name="fk_idpaciente" class="java.lang.String"/>
+	<field name="nombre" class="java.lang.String"/>
+	<field name="apematerno" class="java.lang.String"/>
+	<field name="apepaterno" class="java.lang.String"/>
+	<field name="fechanacimiento" class="java.sql.Date"/>
+	<field name="sexo" class="java.lang.String"/>
+	<field name="consultorio" class="java.lang.String"/>
+	<field name="fechacita" class="java.sql.Date"/>
+	<field name="horacita" class="java.sql.Time"/>
+	<field name="turno" class="java.lang.String"/>
+	<field name="status" class="java.lang.String"/>
+	<field name="observaciones" class="java.lang.String"/>
+	<field name="nombre_esp" class="java.lang.String"/>
+	<field name="apepaterno_esp" class="java.lang.String"/>
+	<field name="apematerno_esp" class="java.lang.String"/>
+	<field name="rfc_esp" class="java.lang.String"/>
+	<field name="num_cedula" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="111" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="440" y="0" width="115" height="24" forecolor="#006699" uuid="b56a981c-7eab-483b-b28a-8fd465736d05"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="152" y="11" width="143" height="39" forecolor="#006699" uuid="cb6aa451-cf2e-4fea-a93e-0f81a15a3b85"/>
+				<textElement>
+					<font fontName="Arial" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Clinica María]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="128" y="50" width="427" height="24" forecolor="#006699" uuid="4de1fd03-2ece-434d-8c60-8cb8eb08bf42"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Calle las Flores 118, Colonia Villalta, CP 96227, Acayucan Ver.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="238" y="74" width="105" height="16" forecolor="#006699" uuid="a9e73713-3e16-46c1-93bf-e6b175dcacc4"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tel: 921 100 22 11]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="287" y="11" width="140" height="39" forecolor="#006699" uuid="fae57af6-5b7a-4965-97e1-36ec8a4f5e98"/>
+				<textElement>
+					<font fontName="Arial" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[- Cita Médica]]></text>
+			</staticText>
+			<line>
+				<reportElement x="17" y="100" width="531" height="2" forecolor="#006699" uuid="5256e7e5-6b13-4d07-81cb-2fda7c90e420"/>
+			</line>
+			<image>
+				<reportElement x="26" y="17" width="56" height="57" uuid="8f736ea8-0cd6-45a8-8b2b-83c14cfe2965"/>
+				<imageExpression><![CDATA["C:\\Users\\danie\\Downloads\\CLINICA_MARIA_IMG\\clinica_reporte.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="17" y="23" width="118" height="15" forecolor="#006699" uuid="0d522b4b-450d-4bf9-8c3a-c668b3353da5"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID PACIENTE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="0" width="126" height="13" forecolor="#006699" uuid="3a490e2c-1b86-440e-a496-4ace3853983d"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS DE PACIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="137" y="23" width="52" height="15" forecolor="#006699" uuid="91268ef7-eec0-4f09-bebe-ce5f9a2bf31b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="23" width="60" height="15" forecolor="#006699" uuid="a5f7b781-e993-4aa2-9669-3a61bfd93363"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SEXO:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="17" y="66" width="531" height="3" forecolor="#006699" uuid="16a01e94-3dc8-4ade-9130-4d7cc96126f7"/>
+			</line>
+			<textField>
+				<reportElement x="17" y="40" width="100" height="15" uuid="cf38d986-9a3f-4bea-9c35-7ad426ae4d20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fk_idpaciente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="38" width="66" height="15" uuid="8f9375da-9446-4e72-9f8b-a6f9bcc7c30a"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="211" y="38" width="76" height="15" uuid="03a326af-4992-464c-a2fe-d93599a0d447"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apematerno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="293" y="38" width="78" height="15" uuid="dc3fcd77-280a-403c-b651-88f856b76798"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apepaterno}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="38" width="60" height="15" uuid="3106caa8-4dd4-4290-ab67-85f30d0f51db"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sexo}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MM/dd/yyyy">
+				<reportElement x="448" y="38" width="93" height="18" uuid="4f38a07c-8561-4cc1-82ea-2260e757d956"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechanacimiento}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="448" y="23" width="100" height="15" forecolor="#006699" uuid="77e800d1-a6f5-4bc7-85da-4cfdfe2179d1"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA NACIMIENTO:]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="223" splitType="Stretch">
+			<staticText>
+				<reportElement x="19" y="132" width="219" height="19" forecolor="#006699" uuid="d7df942a-8a7a-48c2-91e9-86458366e172"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OBSERVACIONES PREVIAS A LA CITA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="0" width="95" height="15" forecolor="#006699" uuid="d8437fde-7949-44fd-bd82-60937fceeeaf"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS DE CITA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="31" width="65" height="18" forecolor="#006699" uuid="ecafa7fc-857e-4bcb-af32-8e6450a3ba79"/>
+				<textElement>
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID CITA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="17" y="85" width="246" height="19" forecolor="#006699" uuid="56dd532a-baa8-493c-87f2-c423942f4aad"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRESENTARSE EN EL SIGUIENTE HORARIO:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="138" y="31" width="71" height="18" forecolor="#006699" uuid="fa0dd272-b000-4869-bf28-8bd7e7c17f45"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CONSULTORIO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="19" y="49" width="100" height="20" uuid="e72b62ab-ab8f-4023-8399-d1497cdf8462"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{pk_idcita}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="49" width="100" height="20" uuid="8b405a34-9b2b-403d-a0cc-e3df6f814955"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{consultorio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="271" y="49" width="82" height="20" uuid="97b42dcb-de16-4ebf-9098-9d5cbae5fafe"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombre_esp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="353" y="49" width="95" height="20" uuid="8cc31ad0-b01d-429b-9eb2-f31c9aff9ccc"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apepaterno_esp}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="448" y="49" width="93" height="20" uuid="2552923f-8697-4199-a47e-15e010e39c81"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{apematerno_esp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="271" y="31" width="136" height="18" forecolor="#006699" uuid="a06b1e40-a5ed-45c2-a0a0-c3ca5a9ebe35"/>
+				<textElement textAlignment="Left">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE DE ESPECIALISTA:]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="19" y="104" width="109" height="20" uuid="7c883b7d-9ad3-40a0-b73e-81ad0f2eb5e3"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fechacita}]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm a">
+				<reportElement x="135" y="104" width="100" height="20" uuid="efc531a7-0881-4a99-8bc6-6f06b81030eb"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{horacita}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="19" y="151" width="216" height="49" uuid="03368731-51d2-4e5b-b4f8-8c13af8252b4"/>
+				<textFieldExpression><![CDATA[$F{observaciones}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="18" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="12" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="19" splitType="Stretch"/>
+	</summary>
+</jasperReport>
